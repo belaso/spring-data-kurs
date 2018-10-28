@@ -13,15 +13,18 @@ public class H2DatabaseTest {
 	@Test
 	public void testStartDatabaseInMemory() throws SQLException, IOException {
 		JdbcDataSource dataSource = new JdbcDataSource();
-		dataSource.setUrl("jdbc:h2:mem:testdb");
+		dataSource.setUrl("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
 		dataSource.setUser("sa");
 		dataSource.setPassword("");
 
 		Connection connection = dataSource.getConnection();
 		connection.createStatement().execute("create table person(nachname varchar(100))");
 		connection.createStatement().executeUpdate("insert into person(nachname) values('Trutz')");
-		Server.startWebServer(connection);
 		connection.close();
+
+		Server webServer = Server.createWebServer();
+		webServer.start();
+		webServer.shutdown();
 	}
 
 }
