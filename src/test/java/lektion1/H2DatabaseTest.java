@@ -8,10 +8,10 @@ import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 import org.junit.jupiter.api.Test;
 
-public class H2DatabaseTest {
+class H2DatabaseTest {
 
 	@Test
-	public void testStartDatabaseInMemory() throws SQLException, IOException {
+	void testH2DatabaseInMemory() throws SQLException, IOException {
 		JdbcDataSource dataSource = new JdbcDataSource();
 		dataSource.setUrl("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
 		dataSource.setUser("sa");
