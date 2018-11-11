@@ -12,6 +12,7 @@ public class H2DatabaseTest {
 
 	@Test
 	public void testStartDatabaseInMemory() throws SQLException, IOException {
+
 		JdbcDataSource dataSource = new JdbcDataSource();
 		dataSource.setUrl("jdbc:h2:mem:testdb");
 		dataSource.setUser("sa");
@@ -22,6 +23,7 @@ public class H2DatabaseTest {
 		connection.createStatement().executeUpdate("insert into person(nachname) values('Trutz')");
 		Server.startWebServer(connection);
 		connection.close();
+
 	}
 
 }
